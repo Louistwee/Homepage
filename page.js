@@ -7,9 +7,10 @@ $.page = function(data){
 }
 $.page.append = function(itemlist,parent){
   for (let i = 0; i < itemlist.length; i++) {
-    let item;
-    $.extend(item,$.page[itemlist[i].type].defaults ? $.page[itemlist[i].type].defaults : {},itemlist[i])
-    parent.append($.page[itemlist[i].type](item));
+    let type = itemlist[i].type;
+    let item = {};
+    $.extend(item,$.page[type].defaults ? $.page[type].defaults : {},itemlist[i])
+    parent.append($.page[type](item));
   }
 }
 $.page.menu = function(data){
