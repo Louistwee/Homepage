@@ -15,4 +15,4 @@ var page = {
     },
   ],
 }
-$.page(page);
+$(function(){$.page(page);});
