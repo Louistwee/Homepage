@@ -1,6 +1,5 @@
 var page = {
-  title: '',
-  favicon: '',
+  title: 'test',
   items: [
     {
       type: 'Horizontal-navigation',
