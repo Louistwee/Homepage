@@ -12,6 +12,11 @@ var page = {
           action:function(){alert('hoi')},
         },
         {
+          type: 'item',
+          label: 'Check out how this page is made!!!',
+          url: 'https://github.com/Louistwee/Homepage/blob/master/script.js',
+        },
+        {
           type: 'search',
           label: 'Zoeken...',
           action: function(data){
@@ -26,9 +31,9 @@ var page = {
       ],
     },
     {
-          type: 'text',
-          text: 'Hello welcome on the example page of *page.js*.<br> Try to use your _right mouse_ on severeal elements. <br>You can simply include icons ^car^ like this*^car^*',
-        },
+      type: 'text',
+      text: 'Hello welcome on the example page of *page.js*.<br> Try to use your _right mouse_ on severeal elements to open the custom Contextmenu. <br>You can simply include icons ^car^ like this*^car^* <br>This page is writen in *JS*',
+    },
   ],
 }
 $(function(){$.page(page);});
