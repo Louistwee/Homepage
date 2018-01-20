@@ -16,9 +16,11 @@ $.page.append = function(itemlist,parent){
 $.page.menu = function(data){
   var menu = $('<div class="ui menu"></div>');
   $.page.append(data.items,menu);
+  return menu;
 }
 $.page.item = function(data){
   var item = $('<a class="item"></a>').text(data.label).attr('href',data.href);
+  return item;
 }
 $.page.item.defaults = {
   label:'',
