@@ -8,7 +8,7 @@ $.page = function(data){
 $.page.append = function(itemlist,parent){
   for (let i = 0; i < itemlist.length; i++) {
     let item;
-    $.extend(item,$.page[itemlist[i].type].defaults,itemlist[i])
+    $.extend(item,$.page[itemlist[i].type].defaults ? $.page[itemlist[i].type].defaults : {},itemlist[i])
     parent.append($.page[itemlist[i].type](item));
   }
 }
