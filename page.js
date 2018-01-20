@@ -19,7 +19,7 @@ $.page.menu = function(data){
   return menu;
 }
 $.page.item = function(data){
-  var item = $('<a class="item"></a>').text(data.label).attr('href',data.href);
+  var item = $('<a class="item"></a>').html(data.label).attr('href',data.href);
   return item;
 }
 $.page.item.defaults = {
