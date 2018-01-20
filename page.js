@@ -6,10 +6,10 @@ $.page = function(data){
   $.page.append(data.items,body);
 }
 $.page.append = function(itemlist,parent){
-  for (i = 0; i < itemlist.length; i++) {
+  for (let i = 0; i < itemlist.length; i++) {
     let item;
-    $.extend(item,$.page[itemlist[i]].defaults,itemlist[i])
-    parent.append($.page[itemlist[i]](item));
+    $.extend(item,$.page[itemlist[i].type].defaults,itemlist[i])
+    parent.append($.page[itemlist[i].type](item));
   }
 }
 $.page.menu = function(data){
