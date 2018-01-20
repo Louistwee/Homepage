@@ -108,7 +108,7 @@
     $.contextmenu.menu.html('');
   });
   $(function () {
-    $('body').append($.contextmenu.menu);
+    $('html').append($.contextmenu.menu);
     $(document).on('click', function () {
       $.contextmenu.menu.blur();
     })
