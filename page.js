@@ -6,25 +6,25 @@
     }
     $.page.append(data.items, body);
     body.addContextmenu({
-        items: [
-          {
-            type: 'item',
-            label: 'Reload',
-            action: function () {
-              window.location.reload(true); 
-            },
-            contextmenu: false,
+      items: [
+        {
+          type: 'item',
+          label: 'Reload',
+          action: function () {
+            window.location.reload(true);
           },
-          {
-            type: 'item',
-            label: 'Reload page from cache',
-            action: function () {
-              window.location.reload(false); 
-            },
-            contextmenu: false,
+          contextmenu: false,
+        },
+        {
+          type: 'item',
+          label: 'Reload page from cache',
+          action: function () {
+            window.location.reload(false);
           },
-        ]
-      })
+          contextmenu: false,
+        },
+      ]
+    })
   };
   $.page.append = function (itemlist, parent) {
     for (var i = 0; i < itemlist.length; i++) {
@@ -47,9 +47,10 @@
   };
   $.page.item = function (data) {
     var item = $('<a class="item"></a>').html(data.label).attr('href', data.href);
-    try{
+    try {
       item.attr(data.attr);
-    }catch(err){}
+    } catch (err) {
+    }
     if (data.action) {
       item.on('click', data.action);
     }
@@ -68,8 +69,8 @@
             type: 'item',
             label: 'Open link in new tab',
             href: data.href,
-            attr:{
-              target:'_blank'
+            attr: {
+              target: '_blank'
             },
             contextmenu: false,
           },
@@ -82,7 +83,45 @@
     label: '',
     href: '#',
     contextmenu: true,
-    attr:{},
+    attr: {
+    },
+  };
+  $.page.search = function (data) {
+    var search = $('<div class="ui category search item"><div class="ui transparent icon input"><input class="prompt" type="text"><i class="search link icon"></i></div><div class="results"></div></div>');
+    search.results = search.find('.results');
+    search.submit = search.find('i');
+    search.input = search.find('input');
+    search.input.attr('placeholder', data.label);
+    var submit = function () {
+      var searchData = {
+        value: search.input[0].value,
+        stopLoading: function () {
+          search.removeClass('loading');
+        },
+        showResults: function (results) {
+          search.removeClass('loading');
+        },
+      }
+      data.action(searchData);
+      search.addClass('loading');
+    };
+    search.input.on('keypress', function (event) {
+      if (event.which === 13) {
+        submit(event);
+      }
+    });
+    search.submit.on('click', submit);
+    return search;
+  };
+  $.page.search.defaults = {
+    label: 'Search...'
+  };
+  $.page.text = function (data) {
+    var text = $('<p class="item"></p>').html($.markup(data.text));
+    return text;
+  };
+  $.page.text.defaults = {
+    text: ''
   };
   $.fn.addContextmenu = function (data) {
     $(this).on('contextmenu', function (event) {
@@ -103,7 +142,7 @@
   $.contextmenu.lastTimestamp = '';
   $.contextmenu.menu = $('<div class="ui fixed menu vertical transition hidden"></div>');
   $.contextmenu.menu.on('blur', function () {
-    $.contextmenu.menu.removeClass('visible');
+    $.contextmenu.menu.removeClass('visible animating slide down in');
     $.contextmenu.menu.addClass('hidden');
     $.contextmenu.menu.html('');
   });
@@ -124,8 +163,10 @@
         $.contextmenu.menu.css('top', event.pageY);
         setTimeout(function () {
           $.contextmenu.menu.removeClass('animating slide down in');
-          $.contextmenu.menu.addClass('visible');
-          $.contextmenu.menu.focus();
+          if ($.contextmenu.menu.html()) {
+            $.contextmenu.menu.addClass('visible');
+            $.contextmenu.menu.focus();
+          }
         }, 500);
       }
     })
@@ -152,6 +193,45 @@
       //console.log('Oops, unable to copy');
     }
     document.body.removeChild(textArea);
-  }
+  };
+  $.markup = function (text) {
+    var keys = $.markup.keys;
+    var key = '';
+    for(var i in keys){
+      key += i;
+    }
+    console.log(key);
+    var regex = new RegExp('([' + key + ']+)()?(.+?)\\2?\\1','g');
+    //var regex = /([*`_^]+)()?(.+?)\2?\1/g;
+    var result = text;
+    var m;
+    
+    var start = '';
+    var end = '';
+    while ((m = regex.exec(text)) !== null) {
+      // This is necessary to avoid infinite loops with zero-width matches
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }      //do the replacemnts
+
+      for (var i = 0; i < m[1].length; i++) {
+        start = start + keys[m[1][i]][0];
+        end = keys[m[1][i]][1] + end;
+      }
+      result = result.replace(m[0], start + m[3] + end);
+      console.log(result);
+      console.log(m);
+      console.log(start);
+      start = '';
+      end = '';
+    }
+    return result;
+  };
+  $.markup.keys = {
+    '*': ['<b>','</b>'],
+    '`': ['<i>','</i>'],
+    '_': ['<u>','</u>'],
+    '^': ['<i class="',' icon"></i>'],
+  };
   return;
 }) ($)
