@@ -41,5 +41,5 @@ var page = {
       }
     ],
   }
-  
 }
+$.page(page);
