@@ -1,24 +1,45 @@
-$(function(){
-  $.feed('http://www.rssboard.org/files/sample-rss-2.xml',function(feed){
-    $('#feed-ticker').text(feed.items[0].title);
-  })
+var page = {
+  menu:{
+    items:[
+      {
+        type:'Home',
+        title:'Home',
+        url:'hompage.html',
+      },
+      {
+        type:'link',
+        title:'link1',
+        url:'#',
+      },
+      {
+        type:'link',
+        title:'link2',
+        url:'#',
+      },
+      {
+        type:'dropdown',
+        title:'dropdown',
+        url:'#',
+        items:[
+          {
+            type:'link',
+            title:'sub1',
+            url:'#',
+          },
+          {
+            type:'link',
+            title:'sub2',
+            url:'#',
+          }
+        ]
+      },
+      'right',
+      {
+        type:'search',
+        title:'search',
+        url:'#',
+      }
+    ],
+  }
   
-})
-$.feed = function(URL,succes){
-  $.get(URL, function (data) {
-    var $data = $(data);
-    var result = {
-      title:$data.children('title').text(),
-      items:[],
-    };
-    $data.find("item").each(function () { // or "item" or whatever suits your feed
-      var $item = $(this);
-      result.items.push({
-        title:$item.children("title"),
-        author:$item.children("author"),
-        description:$item.children("description"),
-      })
-    });
-    succes(result);
-  });
 }
