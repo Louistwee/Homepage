@@ -6,7 +6,7 @@ var page = {
       items: [
         {
           type: 'item',
-          title: 'link1',
+          label: 'link1',
           url: '#',
         },
       ],
