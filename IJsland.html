@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+Colors
+Thunder cloud:  #505160
+Waterfall:      #68829e
+Moss:           #aebd38
+Meadow:         #598234
+-->
+<html>
+    <head>
+        <title>IJSLAND</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/AnimatedLetters/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="https://www.cssscript.com/demo/flipping-countdown-clock-javascript-css-countdown-js/style.css" />
+        <!-- iconj.com animated favicon code -->
+<link rel="shortcut icon" href="http://www.iconj.com/icon.php?pid=tm4tnj1pku" type="image/x-icon" /> 
+<link rel="icon" href="http://www.iconj.com/gif_icon.php?pid=tm4tnj1pku" type="image/gif" /> 
+<!-- end of iconj.com animated favicon code -->
+
+	<script>
+		document.documentElement.className = 'js';
+        </script>
+	<script src="https://tympanus.net/Development/AnimatedLetters/js/segment.min.js"></script>
+	<script src="https://tympanus.net/Development/AnimatedLetters/js/d3-ease.v0.6.js"></script>
+	<script src="https://tympanus.net/Development/AnimatedLetters/js/letters.js"></script>
+        <style>
+            body{
+                background-color: #505160;
+                overflow-x:hidden;
+            }
+            .heading-container{
+                background: url('https://wallpaperlayer.com/img/2015/8/iceland-wallpaper-hd-3966-4186-hd-wallpapers.jpg');
+                text-align:center;
+                margin:0;
+                padding:0px;
+                padding-top: calc(50vh - 128px);
+                background-size: auto 200vh;
+                background-position: center center;
+                
+                width:100vw;
+            }
+            .heading-container h1{
+                background-color:rgba(80,81,96,0.5);
+                margin:0;
+            }
+            .box{
+                box-shadow:0 0 10px #23222a;
+            }
+            .fallback-message{
+                position:fixed;
+                transform: translateX(-50%);
+                left:50%;
+                top:30px;
+                border:1px solid #598234;
+                color:#598234;
+                background:#aebd38;
+                box-shadow:0 0 3px #505160;
+                text-align:center;
+                width:80%;
+                padding:7px;
+                border-radius:5px;
+                animation-name: fallback-message;
+                animation-duration: 10s;
+            }
+            @keyframes fallback-message {
+                0% {opacity: 0}
+                90% {opacity: 0}
+                100% {opacity: 1}
+            }
+            .day{
+                width:700px;
+                height:700px;
+                background-size:auto 700px;
+            }
+            .dayn{
+                position:absolute;
+                z-index:-1;
+                text-align:center;
+                font-size:600px;
+                color:rgba(80,81,96,0.5);
+                text-align:center;
+                display:block;
+                width:700px;
+            }
+            .list{
+                font-size: 50px;
+                padding-left: 70px;
+                color: #000;
+                margin-top: 350px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fallback-message" id="fallback-message">
+            Scroll Down to start presentaion
+        </div>
+        <div id="impress">
+            <div class="heading-container step box" id="start" data-z="1000">
+                <div class="countdown" style="display: inline-block;"></div>
+                <h1>IJSLAND</h1>
+            </div>
+            <div></div>
+            <div class="step" id="wiki" data-z="0" data-x="2000" data-rotate-y="90">
+                <iframe src="https://nl.wikipedia.org/wiki/IJsland" height="600" width="800" onload="this.height= screen.height*0.8; this.width= screen.width*0.8" style="box-shadow:0 0 10px #23222a;border:none;border-bottom:5px solid #aebd38"></iframe>
+            </div>
+            <div class="step" id="calender" data-z="0" data-x="4000">
+                <h2 style="padding-bottom:600px; color:#aebd38; font-size:70px;">Kalender</h2>
+            </div>
+            <div class="step box day" id="4" data-z="-3000" data-rotate-y="20" data-x="5600" data-y="-800" style="background-image:url('https://www.progressiveautomations.com/wp/wp-content/uploads/sites/2/2015/01/airplanes-actuators.jpg')">
+                <div class="dayn">4</div>
+                <ul class="list">
+                    <li>Vertrek</li>
+                    <li>Auto's huren</li>
+                    <li><b>Kamping Golden Circle</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="5" data-z="-3000" data-rotate-y="-20" data-x="6400" data-y="-800" style="background-image:url('http://anextweb.com/wp-content/uploads/2016/05/Simple-and-Decent-Gold-ring-1.jpg')">
+                <div class="dayn">5</div>
+                <ul class="list">
+                    <li>Golden Circle</li>
+                    <li><b>Kamping Golden Circle</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="6" data-z="-3000"  data-rotate-y="20" data-x="1600" data-y="0" style="background-image:url('http://anextweb.com/wp-content/uploads/2016/05/Simple-and-Decent-Gold-ring-1.jpg')">
+                <div class="dayn">6</div>
+                <ul class="list">
+                    <li>Golden Circle</li>
+                    <li><b>Terrein scouts IJsland</b></li>
+                    <li>Kenismaking</li>
+                </ul>
+            </div>
+            <div class="step box day" id="7" data-z="-3000" data-rotate-y="-20"  data-x="2400" data-y="0" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/9/99/Flag-map_of_Iceland.svg')">
+                <div class="dayn">7</div>
+                <ul class="list">
+                    <li>Stadsspel/IJslandse dag</li>
+                    <li><b>Terrein scouts IJsland</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="8" data-z="-3000"  data-rotate-y="20" data-x="3200" data-y="0" style="background-image:url('https://thumbs.dreamstime.com/b/belgium-map-3801846.jpg')">
+                <div class="dayn">8</div>
+                <ul class="list">
+                    <li>Belgische dag</li>
+                    <li>Zeilen / kayak</li>
+                    <li><b>Terrein scouts IJsland</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="9" data-z="-3000" data-rotate-y="-20" data-x="4000"  data-y="0" style="background-image:url('https://4.bp.blogspot.com/-j5yX7MB7LeE/UrAVNIfIXxI/AAAAAAAAQuE/ZqW5BxpdD1Q/s1600/joel-santos-iceland-06.jpg')">
+                <div class="dayn">9</div>
+                <ul class="list">
+                    <li>Natuur park</li>
+                    <li>Scouts technieken</li>
+                    <li><b>Terrein scouts IJsland</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="10" data-z="-3000"  data-rotate-y="20" data-x="4800"  data-y="0" style="background-image:url('http://klavertje.wendyonline.nl.s3.amazonaws.com/wp-content/uploads/2015/02/Walvis.jpg')">
+                <div class="dayn">10</div>
+                <ul class="list">
+                    <li>Walvis spotten</li>
+                    <li>Kampvuur vervangers</li>
+                    <li><b>Terrein scouts IJsland</b></li>
+                </ul>
+            </div>
+            <div class="step box day" id="11" data-z="-3000" data-rotate-y="-20" data-x="5600"  data-y="0" style="background-image:url('https://www.wnf.nl/upload_mm/f/0/3/5917_fullimage_ijsbeer-close-up.jpg')">
+                <div class="dayn">11</div>
+                <ul class="list">
+                    <li>Noorder kliffen</li>
+                    <li>IJsberen</li>
+                </ul>
+            </div>
+            <div class="step box day" id="12" data-z="-3000"  data-rotate-y="20" data-x="6400"  data-y="0" style="background-image:url('https://d19lgisewk9l6l.cloudfront.net/assetbank/Blue_Lagoon_Iceland_149019.jpg')">
+                <div class="dayn">12</div>
+                <ul class="list">
+                    <li>Blue lagoon</li>
+                </ul>
+            </div>
+            <div class="step box day" id="13" data-z="-3000"  data-rotate-y="-20" data-x="1600"  data-y="800" style="background-image:url('https://sapling-inc.com/wp-content/gallery/analog/Sapling-Analog-Round-Front-View-Dial-S-Hands-Standard.jpg')">
+                <div class="dayn">13</div>
+                <ul class="list">
+                    <li>24 uur spel</li>
+                </ul>
+            </div>
+            <div class="step box day" id="14" data-z="-3000"  data-rotate-y="20" data-x="2400"  data-y="800" style="background-image:url('https://www.progressiveautomations.com/wp/wp-content/uploads/sites/2/2015/01/airplanes-actuators.jpg')">
+                <div class="dayn">14</div>
+                <ul class="list">
+                    <li>Vertrek</li>
+                </ul>
+            </div>
+        </div>
+        <script src="http://impress.github.io/impress.js/js/impress.js"></script>
+        <script src="https://www.cssscript.com/demo/flipping-countdown-clock-javascript-css-countdown-js/countDown.js"></script>
+        <script>
+            (function() {
+                var items = [].slice.call(document.querySelectorAll('h1'));
+
+                function init() {
+                        items.forEach(function(item) {
+                                var word = item,
+                                        // initialize the plugin
+                                        instance = new Letters(word, {
+                                                size : screen.height/2,
+                                                weight : 10,
+                                                color: '#aebd38',
+                                                duration: 10,
+                                                delay: 0.1,
+                                                fade: 0,
+                                                easing: d3_ease.easeExpOut.ease
+                                        });
+
+                                // show word
+                                instance.show();
+
+                                item.addEventListener('click', function() {
+                                        instance.hide({
+                                                duration: 1,
+                                                delay: 0,
+                                                fade: 1,
+                                                easing: d3_ease.easeExpOut.ease,
+                                                callback: function() {
+                                                        instance.show();
+                                                }
+                                        });
+                                });
+                        });
+                }
+
+                init();
+                
+                window.onscroll = function(){
+                    document.getElementById('fallback-message').style.display = 'none';
+                    var api = impress();
+                    api.init();
+                    window.onclick = function(e){
+                        if(screen.width - 2*e.clientX > 0){
+                            api.prev();
+                        }else{
+                            api.next();
+                        }
+                    }
+                    window.onscroll = function(){};
+                    
+                };
+                
+    var cd = new Countdown({
+        cont: document.querySelector('.countdown'),
+        endDate: 1533384000000,
+        outputTranslation: {
+            year: 'Years',
+            week: 'Weeks',
+            day: 'Days',
+            hour: 'Hours',
+            minute: 'Minutes',
+            second: 'Seconds',
+        },
+        endCallback: null,
+        outputFormat: 'week|day|hour|minute|second',
+    });
+    cd.start();
+    
+            })()
+        </script>
+    </body>
+</html>
