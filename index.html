@@ -1,14 +1,26 @@
 <html>
   <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   </head>
   <body>
     <header>
       <nav><a></a></nav>
     </header>
     <main>
-      <h1 contenteditable="" oninput="this.innerText = this.innerText">Enter your Github Name</h1>
+      <h1 id="title" contenteditable="">Enter your Github Name</h1>
+      <script>
+        $('#title').on('input',function(){
+          if($(this).text() !== $(this).html())$(this).text($(this).text());
+          var username = $(this).text();
+          $.getJSON('https://api.github.com/users/' + username.toLowerCase(),function(data){
+            $('#title').text(data.login);
+            $('#githubImage').attr('src',data.avatar_url)
+          })
+        }
+      </script>
       <article>
-        <h1>View Issues form </h1>
+        <h2>Profile</h2>
+        <img id="githubImage" alt="github image"/>
       </article>
       
     </main>
