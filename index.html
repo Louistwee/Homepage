@@ -16,11 +16,13 @@
             for(var selector of g.split('.')){
               item = item[selector] ? item[selector] : '';
             }
+            return item
           }));
         }
         $('#title').on('input',function(){
           if($(this).text() !== $(this).html())$(this).text($(this).text());
           var username = $(this).text();
+          $('section#main').children().remove();
           $.getJSON('https://api.github.com/users/' + username.toLowerCase(),function(data){
             $('#github-image').attr('src',data.avatar_url);
             $.getJSON(data.gists_url.split('{')[0],function(data){
