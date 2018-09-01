@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://styleguide.github.com/assets/npm/primer.css">
   </head>
   <body>
     <header>
@@ -9,15 +10,13 @@
     <main>
       <h1 id="title" contenteditable="">Enter your Github Name</h1>
       <script>
-        function loadData(selector,data){
-          var element = $(selector).clone();
-          element.html(element.html().replace(/{([^}]*)}/gm,function(m,g){
+        function loadData(selector,create,data){
+          return $(create).html($(selector).html().replace(/{([^}]*)}/gm,function(m,g){
             var item = data;
             for(var selector of g.split('.')){
               item = item[selector] ? item[selector] : '';
             }
-          }))
-          return element;
+          }));
         }
         $('#title').on('input',function(){
           if($(this).text() !== $(this).html())$(this).text($(this).text());
@@ -26,7 +25,7 @@
             $('#github-image').attr('src',data.avatar_url);
             $.getJSON(data.gists_url.split('{')[0],function(data){
               for(var gist of data){
-                $('section#main').append(loadData('#gist-template',data));
+                $('section#main').append(loadData('#gist-template','<article></article>',data));
               }
             })
           })
@@ -36,11 +35,9 @@
         <h2>Profile</h2>
         <img id="github-image" alt="github image"/>
       </aside>
-      <template>
-        <article id="gist-template">
-          <h3>Gist</h3>
-          <p>{description}</p>
-        </article>
+      <template id="gist-template">
+        <h3>Gist</h3>
+        <p>{description}</p>
       </template>
       <section id="main">
         
