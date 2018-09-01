@@ -9,20 +9,42 @@
     <main>
       <h1 id="title" contenteditable="">Enter your Github Name</h1>
       <script>
+        function loadData(selector,data){
+          var element = $(selector).clone();
+          element.html(element.html().replace(/{([^}]*)}/gm,function(m,g){
+            var item = data;
+            for(var selector of g.split('.')){
+              item = item[selector] ? item[selector] : '';
+            }
+          }))
+          return element;
+        }
         $('#title').on('input',function(){
           if($(this).text() !== $(this).html())$(this).text($(this).text());
           var username = $(this).text();
           $.getJSON('https://api.github.com/users/' + username.toLowerCase(),function(data){
-            $('#title').text(data.login);
-            $('#githubImage').attr('src',data.avatar_url);
+            $('#github-image').attr('src',data.avatar_url);
+            $.getJSON(data.gists_url.split('{')[0],function(data){
+              for(var gist of data){
+                $('section#main').append(loadData('#gist-template',data));
+              }
+            })
           })
         })
       </script>
-      <article>
+      <aside>
         <h2>Profile</h2>
-        <img id="githubImage" alt="github image"/>
-      </article>
-      
+        <img id="github-image" alt="github image"/>
+      </aside>
+      <template>
+        <article id="gist-template">
+          <h3>Gist</h3>
+          <p>{description}</p>
+        </article>
+      </template>
+      <section id="main">
+        
+      </section>
     </main>
   </body>
 </html>
