@@ -14,9 +14,9 @@
           var username = $(this).text();
           $.getJSON('https://api.github.com/users/' + username.toLowerCase(),function(data){
             $('#title').text(data.login);
-            $('#githubImage').attr('src',data.avatar_url)
+            $('#githubImage').attr('src',data.avatar_url);
           })
-        }
+        })
       </script>
       <article>
         <h2>Profile</h2>
