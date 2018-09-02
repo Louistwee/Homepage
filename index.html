@@ -44,7 +44,7 @@
         <script>
            var files = {files};
           $('')
-          for(var i in files)$('#gist{id}').append(loadData('#gist-template','<section></section>',files[i]));
+          for(var i in files)$('#gist{id}').append(loadData('#file-template','<section></section>',files[i]));
         </script>
       </template>
       <template id="file-template">
