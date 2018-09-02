@@ -30,6 +30,12 @@
                 $('section#main').append(loadData('#gist-template','<article></article>',gist));
               }
             })
+            $.getJSON(data.events_url.split('{')[0],function(data){
+              for(var event of data){
+                let element = loadData('#event-template','<article></article>',event);
+                $('section#main').append(element);
+              }
+            })
           })
         })
       </script>
@@ -41,15 +47,11 @@
         <h3><a href="{html_url}">Gist</a></h3>
         <p>{description}</p>
         <section id="gist{id}"></section>
-        <script>
-           var files = {files};
-          $('')
-          for(var i in files)$('#gist{id}').append(loadData('#file-template','<section></section>',files[i]));
-        </script>
       </template>
-      <template id="file-template">
-        <a href="{raw_url}">{filename}</a>
-        <span>Language:{language}</span>
+      <template id="gist-template">
+        <h3>{type}</h3>
+        <p>{repo.name}</p>
+        <a href="{payload.commits.0.url}">{payload.commits.0.message}</a>
       </template>
       <section id="main">
         
