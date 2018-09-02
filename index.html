@@ -27,7 +27,7 @@
             $('#github-image').attr('src',data.avatar_url);
             $.getJSON(data.gists_url.split('{')[0],function(data){
               for(var gist of data){
-                $('section#main').append(loadData('#gist-template','<article></article>',data));
+                $('section#main').append(loadData('#gist-template','<article></article>',gist));
               }
             })
           })
@@ -40,6 +40,16 @@
       <template id="gist-template">
         <h3><a href="{html_url}">Gist</a></h3>
         <p>{description}</p>
+        <section id="gist{id}"></section>
+        <script>
+           var files = {files};
+          $('')
+          for(var i in files)$('#gist{id}').append(loadData('#gist-template','<section></section>',files[i]));
+        </script>
+      </template>
+      <template id="file-template">
+        <a href="{raw_url}">{filename}</a>
+        <span>Language:{language}</span>
       </template>
       <section id="main">
         
